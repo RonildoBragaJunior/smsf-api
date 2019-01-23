@@ -1,6 +1,5 @@
 package com.squirrel.smsfapi.security;
 
-
 import com.squirrel.smsfapi.exception.ResourceNotFoundException;
 import com.squirrel.smsfapi.model.User;
 import com.squirrel.smsfapi.repository.UserRepository;
@@ -23,11 +22,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String email)
+    public UserDetails loadUserByUsername(String usernameOrEmail)
             throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email)
+        // Let people login with either username or email
+        User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException("User not found with email : " + email)
+                        new UsernameNotFoundException("User not found with username or email : " + usernameOrEmail)
         );
 
         return UserPrincipal.create(user);

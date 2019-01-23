@@ -1,7 +1,6 @@
 package com.squirrel.smsfapi.payload;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 
 /**
  * Created by rajeevkumarsingh on 02/08/17.
@@ -9,13 +8,20 @@ import javax.validation.constraints.NotBlank;
 
 public class SignUpRequest {
     @NotBlank
+    @Size(min = 4, max = 40)
     private String name;
 
     @NotBlank
+    @Size(min = 3, max = 15)
+    private String username;
+
+    @NotBlank
+    @Size(max = 40)
     @Email
     private String email;
 
     @NotBlank
+    @Size(min = 6, max = 20)
     private String password;
 
     public String getName() {
@@ -24,6 +30,14 @@ public class SignUpRequest {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {

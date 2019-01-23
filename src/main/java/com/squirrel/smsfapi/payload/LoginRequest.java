@@ -1,6 +1,5 @@
 package com.squirrel.smsfapi.payload;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -8,18 +7,17 @@ import javax.validation.constraints.NotBlank;
  */
 public class LoginRequest {
     @NotBlank
-    @Email
-    private String email;
+    private String usernameOrEmail;
 
     @NotBlank
     private String password;
 
-    public String getEmail() {
-        return email;
+    public String getUsernameOrEmail() {
+        return usernameOrEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsernameOrEmail(String usernameOrEmail) {
+        this.usernameOrEmail = usernameOrEmail;
     }
 
     public String getPassword() {
